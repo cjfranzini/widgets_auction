@@ -12,10 +12,6 @@ default: &default
 development:
   <<: *default
   database: db/development.sqlite3
-#   adapter: postgresql
-#   encoding: unicode
-#   database: rowan
-#   pool: 5
 
 
 # Warning: The database defined as "test" will be erased and
@@ -28,5 +24,3 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
-#   adapter: postgresql
-#   database: rowan
