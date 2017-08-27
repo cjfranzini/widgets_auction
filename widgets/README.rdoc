@@ -10,4 +10,6 @@
 
 * Code to seed database adapted from https://gist.github.com/arjunvenkat/1115bc41bf395a162084
 
+* Database located at db/development.sqlite3
+
 * Visit localhost:3000 to see view
