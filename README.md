@@ -5,7 +5,7 @@ was built using Ruby on Rails with an accompanying SQLite database containing
 the widget auction data.
 
 ### Contents:
-- Images: charts from the analysis
-- Notebook: Jupyter notebook containing full analysis, includes PDF and HTML
+- [Images](http://github.com/cjfranzini/widgets_auction/tree/master/images): charts from the analysis
+- [Notebook](http://github.com/cjfranzini/widgets_auction/tree/master/notebook): Jupyter notebook containing full analysis, includes PDF and HTML
  renderings of the Notebook
-- Widgets: Ruby on Rails app displaying summary of data and analysis  
+- [Widgets](http://github.com/cjfranzini/widgets_auction/tree/master/widgets): Ruby on Rails app displaying summary of data and analysis  
