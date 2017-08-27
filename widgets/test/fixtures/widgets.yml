@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  color: MyString
+  edges: 1
+  sale_price: 1
+
+two:
+  color: MyString
+  edges: 1
+  sale_price: 1

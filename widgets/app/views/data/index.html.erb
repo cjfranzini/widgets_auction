@@ -1,0 +1,127 @@
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+  }
+table tr:nth-child(even) {
+    background-color: #eee;
+}
+table tr:nth-child(odd) {
+   background-color:#fff;
+ }
+.header {
+  font-weight: bold;
+  text-align: center;
+}
+.numerical {
+  text-align: right;
+}
+</style>
+
+
+<h1>Widgets Auction Analysis</h1>
+
+<% counts = Hash.new(0) %>
+<% edges = Hash.new(0) %>
+<% sale_prices = Hash.new(0) %>
+
+<% @widgets.each do |x| %>
+<% counts[x.color] += 1 %>
+<% edges[x.color] += x.edges %>
+<% sale_prices[x.color] += x.sale_price %>
+<% end %>
+
+<table>
+  <caption>Widgets Auction Dataset: Summary Statistics</caption>
+  <tr class='header'>
+    <td>Color</td>
+    <td>Count</td>
+    <td>Average Edges</td>
+    <td>Average Sale Price ($)</td>
+    <td>Average Cost ($)</td>
+    <td>Average Profit ($)</td>
+    <td>Total Profit ($)</td>
+  </tr>
+  <tr>
+    <td>Blue</td>
+    <td class='numerical'><%= counts['BLUE'] %></td>
+    <td class='numerical'><%= (edges['BLUE'].to_f / counts['BLUE'].to_f).round(2) %></td>
+    <td class='numerical'><%= (sale_prices['BLUE'].to_f / counts['BLUE'].to_f).round(2) %></td>
+    <td class='numerical'><%= ((edges['BLUE'] * 20000).to_f / counts['BLUE'].to_f).round(2) %></td>
+    <td class='numerical'><%= ((sale_prices['BLUE'].to_f - (edges['BLUE'] * 20000).to_f) / counts['BLUE'].to_f).round(2) %></td>
+    <td class='numerical'><%= (sale_prices['BLUE'].to_f - (edges['BLUE'] * 20000).to_f).to_i %></td>
+  </tr>
+  <tr>
+    <td>Red</td>
+    <td class='numerical'><%= counts['RED'] %></td>
+    <td class='numerical'><%= (edges['RED'].to_f / counts['RED'].to_f).round(2) %></td>
+    <td class='numerical'><%= (sale_prices['RED'].to_f / counts['RED'].to_f).round(2) %></td>
+    <td class='numerical'><%= ((edges['RED'] * 20000).to_f / counts['RED'].to_f).round(2) %></td>
+    <td class='numerical'><%= ((sale_prices['RED'].to_f - (edges['RED'] * 20000).to_f) / counts['RED'].to_f).round(2) %></td>
+    <td class='numerical'><%= (sale_prices['RED'].to_f - (edges['RED'] * 20000).to_f).to_i %></td>
+  </tr>
+  <tr>
+    <td>Black</td>
+    <td class='numerical'><%= counts['BLACK'] %></td>
+    <td class='numerical'><%= (edges['BLACK'].to_f / counts['BLACK'].to_f).round(2) %></td>
+    <td class='numerical'><%= (sale_prices['BLACK'].to_f / counts['BLACK'].to_f).round(2) %></td>
+    <td class='numerical'><%= ((edges['BLACK'] * 20000).to_f / counts['BLACK'].to_f).round(2) %></td>
+    <td class='numerical'><%= ((sale_prices['BLACK'].to_f - (edges['BLACK'] * 20000).to_f) / counts['BLACK'].to_f).round(2) %></td>
+    <td class='numerical'><%= (sale_prices['BLACK'].to_f - (edges['BLACK'] * 20000).to_f).to_i %></td>
+  </tr>
+  <tr class="header">
+    <td>Total</td>
+    <td class='numerical'><%= counts['BLUE'] + counts['RED'] + counts['BLACK'] %></td>
+    <td class='numerical'><%= ((edges['BLUE'] + edges['RED'] + edges['BLACK']).to_f / Widget.count.to_f).round(2) %></td>
+    <td class='numerical'><%= ((sale_prices['BLUE'] + sale_prices['RED'] + sale_prices['BLACK']).to_f / Widget.count.to_f).round(2) %></td>
+    <td class='numerical'><%= (((edges['BLUE'] + edges['RED'] + edges['BLACK']) * 20000).to_f / Widget.count.to_f).round(2) %></td>
+    <td class='numerical'><%= (((sale_prices['BLUE'] + sale_prices['RED'] + sale_prices['BLACK']).to_f - ((edges['BLUE'] + edges['RED'] + edges['BLACK']) * 20000).to_f) / Widget.count.to_f).round(2) %></td>
+    <td class='numerical'><%= ((sale_prices['BLUE'] + sale_prices['RED'] + sale_prices['BLACK']).to_f - ((edges['BLUE'] + edges['RED'] + edges['BLACK']) * 20000).to_f).to_i %></td>
+  </tr>
+</table>
+
+<h3>Color Analysis</h3>
+<p>236 widgets were sold at the auction in total. We had the fewest sales, with
+  Red widgets comprising less than 20% of the total sales. Black widgets amounted
+  to a little more than a quarter of sales and Blue widgets were the largest
+  portion of sales, comprising more than 50% of the total sales. Without more
+  information it is hard to say whether Blue widgets were more desirable or there
+  were more Blue widgets available. Either way, there is room for us to improve
+  our share of the widget market.</p>
+<h3>Edge Analysis</h3>
+<p>Overall, the number of widgets sold was proportional to the number of edges.
+  So, the more edges the more widgets sold. However, while the Blue, Black, and
+  overall sale of widgets exhibited a relatively steady increase in sales from
+  three to four to five sides. We sold considerably more five-sided widgets than
+  three- or four-sided widgets. This means that, relatively speaking, we had a
+  higher average cost than our competitors by almost $10,000 per widget.</p>
+<h3>Sale Price Analysis</h3>
+<p>Our sales of Red widgets were higher on-average than out competitors'. We sold
+  our widgets for an average of $176,333.33 per widget, with the lowest sale
+  being for $40,000 and the highest for $480,000. However, the highest sale price
+  was for a Blue widget at $600,000.</p>
+<h3>Profit Analysis</h3>
+<p>Compared to our competitor that produces Black widgets, we performed very well
+  in terms of profits. We sold our widgets for roughly twice their profit.
+  However, we were beat significantly by the producer of Blue widgets, which
+  almost doubled our profits. The data shows that we profited well of our widgets.
+  We had the highest average profit of almost $90,000 per widget and more than
+  90% of our sales were profitable (we lost money on fewer than 9% of sales).
+  However, the manufacturer of Blue widgets had the greatest single profit of
+  $500,000 for a widget. Despite our performance, the manufacturer of Blue widgets
+  nearly doubled our profits simply because it sold almost three times as many
+  widgets than we did.</p>
+<h3>Conclusion</h3>
+<p>We resoundly outperformed our competitor that manufactures Black widgets and
+   our widgets sold very well overall. However, the manufacturer of Blue widgets
+   commanded a majority of widget sales at the auction and was able to make
+   almost twice as much profit as we did as a result of the greater volume of
+   sales. It seems that our focus on the production of five-edged widgets payed
+   off but we need to make an effort to accumulate a greater market share at
+   auction. More work will need to be done to determine whether this should be
+   accomplished via greater production of five-edged widgets or by diversifying
+   our widget offerings to produce more three- and four-edged widgets.<p>
+<!-- <img src='/Users/Chris/Documents/Job Applications/take_homes/rowan/color_chart.png'></img> -->
