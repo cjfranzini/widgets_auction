@@ -6,7 +6,7 @@
 
 * Rails version: 4.2.1
 
-* Seed data is located in [lib/seeds](https://github.com/cjfranzini/widgets_auction/tree/master/widgets/lib/seeds); if database is not seeded, run <tt>rake db:seed</tt>
+* Seed data is located in lib/seeds; if database is not seeded, run <tt>rake db:seed</tt>
 
 * Code to seed database adapted from https://gist.github.com/arjunvenkat/1115bc41bf395a162084
 
